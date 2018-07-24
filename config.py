@@ -1,9 +1,9 @@
 DatabaseConfig = {
-    'db': 'flame-database',
-    'host': 'ds145911.mlab.com',
-    'port': 45911,
-    'username' : 'admin',
-    'password': 'admin123'
+    'db': 'database-name',
+    'host': 'database-dns',
+    'port': 00000,
+    'username' : 'database-username',
+    'password': 'database-passowrd'
 }
 
 JwtConfig = {
