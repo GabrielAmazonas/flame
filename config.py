@@ -5,3 +5,7 @@ DatabaseConfig = {
     'username' : 'admin',
     'password': 'admin123'
 }
+
+JwtConfig = {
+    'key' : 'mysecretkey'
+}

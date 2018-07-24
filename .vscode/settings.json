@@ -1,4 +1,3 @@
 {
     "python.pythonPath": "${workspaceFolder}/flame-env/bin/python",
-    "python.linting.pylintArgs": [ "--load-plugins=pylint_django"]
 }
