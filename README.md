@@ -1,1 +1,12 @@
-# Flame :fire: Opinionated Back-End boilerblate using Flask and MongoDB
+# Flame :fire:
+
+## Implemented:
+
+- User Registration
+- User login
+- JWT Authentication
+
+## Roadmap:
+- Unit tests
+- CI/CD
+- AWS Deploy - Elastic Beanstalk
