@@ -1,4 +1,4 @@
-# Flame :fire:
+# Flame :fire: - Opinionated Flask & MongoDB Back-End
 
 ## Implemented:
 
