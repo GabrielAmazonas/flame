@@ -5,6 +5,7 @@
 - User Registration
 - User login
 - JWT Authentication
+- Request Logs
 
 ## Roadmap:
 - Unit tests
