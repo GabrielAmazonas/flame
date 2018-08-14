@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request, make_response
 from flask_mongoengine import MongoEngine
 from werkzeug.security import generate_password_hash, check_password_hash
-from mongoengine import connect
 from functools import wraps
 
 import jwt
@@ -12,11 +11,13 @@ import datetime
 from models.user import User
 from models.request_log import RequestLog
 
-from config import DatabaseConfig, JwtConfig
 
 app = Flask(__name__)
 
-app.config['MONGODB_SETTINGS'] = DatabaseConfig
+#Environment management settings 
+app.config.from_object('config')
+app.config.from_envvar('FLAME_CONFIG', silent=True)
+
 
 db = MongoEngine(app)
 
@@ -113,7 +114,3 @@ def login():
 def protected():
     return jsonify({'message' : 'TOKEN Validated.'})
 
-
-if __name__ == "__main__":
-    app.run()
-    
