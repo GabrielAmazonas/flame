@@ -9,5 +9,6 @@
 
 ## Roadmap:
 - Unit tests
+- Environment Management
 - CI/CD
 - AWS Deploy - Elastic Beanstalk
