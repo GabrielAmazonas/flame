@@ -6,9 +6,10 @@
 - User login
 - JWT Authentication
 - Request Logs
+- Environment Management
+- Dockerization
 
 ## Roadmap:
 - Unit tests
-- Environment Management
 - CI/CD
 - AWS Deploy - Elastic Beanstalk
