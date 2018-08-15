@@ -38,7 +38,7 @@ def token_required(f):
         if not token:
             return jsonify({'message':'No token was provided'})
         try:
-            data = jwt.decode(token, JwtConfig['key'])
+            data = jwt.decode(token, app.config['JwtConfig']['key'])
 
             #Decodes the incoming request body to UTF-8
             request_data_decoded = request.data.decode("utf-8")
@@ -67,22 +67,26 @@ def register():
     #Transforms the decoded request to a JSON object
     request_data_dict = json.loads(request_data_decoded, encoding="utf-8")
 
-    #This parameters required.
-    email = request_data_dict["Email"]
-    password = request_data_dict["Password"]
+    try:
 
-    #Instantiates a new user only if the username is not used.
-    existing_user = User.objects(email=email).first()
+        #This parameters required.
+        email = request_data_dict["Email"]
+        password = request_data_dict["Password"]
 
-    if existing_user is None:
-        hashpass = generate_password_hash(password, method='sha256')
-        user = User()
-        user.email = email
-        user.password = hashpass
-        user.save()
-        return 'User registered.'
-    else:
-        return 'User already exists.'
+        #Instantiates a new user only if the username is not used.
+        existing_user = User.objects(email=email).first()
+
+        if existing_user is None:
+            hashpass = generate_password_hash(password, method='sha256')
+            user = User()
+            user.email = email
+            user.password = hashpass
+            user.save()
+            return 'User registered.'
+        else:
+            return 'User already exists.'
+    except:
+        return 'An error ocurred. Please, check the provided parameters.'
 
 
 @app.route('/login', methods=["POST"])
@@ -101,7 +105,7 @@ def login():
         # Checks if the provided password matches with the database password.
         if check_password_hash(check_user['password'], password):
 
-            token = jwt.encode({'user': email, 'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30)}, JwtConfig['key'], algorithm='HS256')
+            token = jwt.encode({'user': email, 'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30)}, app.config['JwtConfig']['key'], algorithm='HS256')
 
             #The generated token is a bytes object
             response["token"] = token.decode('UTF-8')
@@ -113,4 +117,3 @@ def login():
 @token_required
 def protected():
     return jsonify({'message' : 'TOKEN Validated.'})
-
