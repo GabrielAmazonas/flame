@@ -14,5 +14,8 @@
 ## Roadmap:
 - Unit tests
 - CI/CD
-- AWS Deploy - Elastic Beanstalk
+- AWS Deploy - AWS Lambda
+
+### Tooling:
+- Zappa (Deploy on AWS Lambda for python web apps).
 
