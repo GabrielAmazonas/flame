@@ -58,6 +58,10 @@ def token_required(f):
         return f(*args, **kwargs)
     return decorated
 
+@app.route('/healthcheck', methods=["POST", "GET"])
+def healthcheck():
+    return "Hello AWS Lambda!"
+
 @app.route('/register', methods=["POST"])
 def register():
 
@@ -117,3 +121,6 @@ def login():
 @token_required
 def protected():
     return jsonify({'message' : 'TOKEN Validated.'})
+
+if __name__ == "__main__":
+    app.run()
