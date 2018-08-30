@@ -58,5 +58,4 @@ jobs:
           name: deploy dev
           command: |
             . venv/bin/activate
-            cd ./home/circleci/repo/flame-env
-            zappa deploy dev
+            zappa update dev

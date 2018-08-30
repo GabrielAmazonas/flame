@@ -58,7 +58,7 @@ def token_required(f):
         return f(*args, **kwargs)
     return decorated
 
-@app.route('/healthcheck', methods=["POST", "GET"])
+@app.route('/', methods=["POST", "GET"])
 def healthcheck():
     return "Hello AWS Lambda!"
 
