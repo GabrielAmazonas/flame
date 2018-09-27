@@ -6,8 +6,3 @@ MONGODB_SETTINGS = {
     'password': 'your-prod-db-password'
 }
 
-Debug = False
-
-JwtConfig = {
-    'key' : 'mysecretkey'
-}
