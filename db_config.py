@@ -1,13 +1,10 @@
 MONGODB_SETTINGS = {
-    'db': 'flame-dev-database',
-    'host': 'ds221292.mlab.com',
-    'port': 21292,
-    'username' : 'admin',
-    'password': 'admin123'
+    'db': 'db-name',
+    'host': 'db_dns',
+    'port': 99999,
+    'username' : 'user',
+    'password': 'password'
 }
-
-Debug = True
-
 
 JwtConfig = {
     'key' : 'mysecretkey'
