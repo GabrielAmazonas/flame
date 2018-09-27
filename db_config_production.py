@@ -1,7 +1,7 @@
 MONGODB_SETTINGS = {
-    'db': 'flame-dev-database',
-    'host': 'ds221292.mlab.com',
-    'port': 21292,
+    'db': 'flame-database',
+    'host': 'ds145911.mlab.com',
+    'port': 45911,
     'username' : 'admin',
     'password': 'admin123'
 }

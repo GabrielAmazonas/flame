@@ -13,7 +13,7 @@ class TestRegister(unittest.TestCase):
 
         response = tester.post('/register',json={ 'Email' : login, 'Password' : password})
 
-        self.assertEquals(response.data, b'User registered.')
+        self.assertEquals(response.data, b'User registered')
 
 if __name__ == '__main__':
     unittest.main()
