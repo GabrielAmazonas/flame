@@ -14,9 +14,13 @@ from models.request_log import RequestLog
 
 app = Flask(__name__)
 
-#Environment management settings 
-app.config.from_object('config')
-app.config.from_envvar('FLAME_CONFIG', silent=True)
+#Environment management settings, defaults to dev stage
+app.config.from_object('db_config', silent=True)
+app.config.from_object('jwt_config', silent=True)
+
+#Check the environment variables
+app.config.from_envvar('DB_CONFIG', silent=True)
+app.config.from_envvar('JWT_CONFIG', silent=True)
 
 
 db = MongoEngine(app)
@@ -53,7 +57,7 @@ def token_required(f):
             request_log.request_headers = request_headers_decoded
             request_log.save()
         except:
-            return jsonify({'message': 'Token is invalid'})
+            return make_response('Token is invalid', 400)
 
         return f(*args, **kwargs)
     return decorated
@@ -86,11 +90,11 @@ def register():
             user.email = email
             user.password = hashpass
             user.save()
-            return 'User registered.'
+            return make_response('User registered', 200)
         else:
-            return 'User already exists.'
+            return make_response('User already exists', 400)
     except:
-        return 'An error ocurred. Please, check the provided parameters.'
+        return make_response('An error ocurred. Please, check the provided parameters.', 400)
 
 
 @app.route('/login', methods=["POST"])

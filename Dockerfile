@@ -1,7 +1,8 @@
 FROM ubuntu:latest
 
 # This docker file assumes a config_production.py file, similar to config.py file but with production variables.
-ENV FLAME_CONFIG ./config_production.py
+ENV DB_CONFIG ./db_config_production.py
+ENV JWT_CONFIG ./jwt_config_production.py
 
 #SO updates and installations
 RUN apt-get update

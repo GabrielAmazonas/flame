@@ -1,0 +1,3 @@
+JwtConfig = {
+    'key' : 'mysecretkey'
+}
