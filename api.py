@@ -15,8 +15,8 @@ from models.request_log import RequestLog
 app = Flask(__name__)
 
 #Environment management settings, defaults to dev stage
-app.config.from_object('db_config', silent=True)
-app.config.from_object('jwt_config', silent=True)
+app.config.from_object('db_config')
+app.config.from_object('jwt_config')
 
 #Check the environment variables
 app.config.from_envvar('DB_CONFIG', silent=True)
