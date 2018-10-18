@@ -11,7 +11,6 @@ import datetime
 from models.user import User
 from models.request_log import RequestLog
 
-
 app = Flask(__name__)
 
 #Environment management settings, defaults to dev stage
@@ -21,7 +20,6 @@ app.config.from_object('jwt_config')
 #Check the environment variables
 app.config.from_envvar('DB_CONFIG', silent=True)
 app.config.from_envvar('JWT_CONFIG', silent=True)
-
 
 db = MongoEngine(app)
 
@@ -40,9 +38,9 @@ def token_required(f):
             token = authorization_header.split('Bearer ')[1]
 
         if not token:
-            return jsonify({'message':'No token was provided'})
+            return make_response('Access denied', 401, {'WWW-Authenticate' : 'Basic realm="No token was provided"'})
         try:
-            data = jwt.decode(token, app.config['JwtConfig']['key'])
+            data = jwt.decode(token, app.config['JWT_CONFIG']['key'], {'verify_exp': True})
 
             #Decodes the incoming request body to UTF-8
             request_data_decoded = request.data.decode("utf-8")
@@ -57,9 +55,9 @@ def token_required(f):
             request_log.request_headers = request_headers_decoded
             request_log.save()
         except:
-            return make_response('Token is invalid', 400)
+             return make_response('Access denied', 401, {'WWW-Authenticate' : 'Basic realm="Invalid token"'})
 
-        return f(*args, **kwargs)
+        return f(request_log, *args, **kwargs)
     return decorated
 
 @app.route('/', methods=["POST", "GET"])
@@ -123,7 +121,7 @@ def login():
 
 @app.route('/protected', methods=["POST"])
 @token_required
-def protected():
+def protected(request_log):
     return jsonify({'message' : 'TOKEN Validated.'})
 
 if __name__ == "__main__":
