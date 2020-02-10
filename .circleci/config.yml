@@ -53,9 +53,3 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
-      
-      - run:
-          name: deploy dev
-          command: |
-            . venv/bin/activate
-            zappa update dev

@@ -1,2 +1,6 @@
 config_production.py
 config.py
+venv
+.vscode
+__pycache__
+.circleci

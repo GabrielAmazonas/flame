@@ -1,3 +1,5 @@
+import os
+
 JwtConfig = {
-    'key' : 'mysecretkey'
+    'key' : os.environ.get('JWT_KEY', 'mysecretkey')
 }

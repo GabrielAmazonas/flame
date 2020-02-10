@@ -1,3 +1,0 @@
-JwtConfig = {
-    'key' : 'myproductionkey'
-}

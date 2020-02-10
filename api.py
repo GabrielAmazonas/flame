@@ -6,6 +6,7 @@ from functools import wraps
 import jwt
 import json
 import datetime
+import os
 
 # Import collection models
 from models.user import User
